@@ -23,6 +23,13 @@ const pAequorFactory = (specimenNum, dna) => {
         if (pAequor.dna[i] === this.dna[i]) {identicalBaseCounter += 1}
       }
       console.log( `Specimen #${pAequor.specimenNum} and specimen #${this.specimenNum} have ${Math.round((identicalBaseCounter / this.dna.length) * 100)}% DNA in common`)
+    },
+    willLikelySurvive() {
+      let goodBaseCounter = 0;
+      for (let i = 0; i < this.dna.length; i++) {
+        if (this.dna[i] === 'G' || this.dna[i] === 'C') {goodBaseCounter += 1}
+      }
+      return Math.round((goodBaseCounter / this.dna.length) * 100) >= 60 ? true : false;
     }
   }
 }
@@ -45,8 +52,7 @@ let pAeq = pAequorFactory(1, mockUpStrand)
 
 console.log(pAeq);
 
-console.log(pAeq.compareDNA(pAequorFactory(2, mockUpStrand)));
-
+console.log(pAeq.willLikelySurvive());
 
 
 
