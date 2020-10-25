@@ -16,7 +16,14 @@ const mockUpStrand = () => {
 const pAequorFactory = (specimenNum, dna) => {
   return {
     specimenNum: specimenNum,
-    dna: dna()
+    dna: dna(),
+    compareDNA(pAequor) {
+      let identicalBaseCounter = 0;
+      for (let i = 0; i < pAequor.dna.length; i++) {
+        if (pAequor.dna[i] === this.dna[i]) {identicalBaseCounter += 1}
+      }
+      console.log( `Specimen #${pAequor.specimenNum} and specimen #${this.specimenNum} have ${Math.round((identicalBaseCounter / this.dna.length) * 100)}% DNA in common`)
+    }
   }
 }
 
@@ -32,13 +39,13 @@ const mutate = (dna) => {
   return dna;
 }
 
+
+
 let pAeq = pAequorFactory(1, mockUpStrand)
 
 console.log(pAeq);
 
-let newPAeq = mutate(pAeq.dna)
-
-console.log(newPAeq);
+console.log(pAeq.compareDNA(pAequorFactory(2, mockUpStrand)));
 
 
 
