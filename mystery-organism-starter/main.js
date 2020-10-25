@@ -46,13 +46,18 @@ const mutate = (dna) => {
   return dna;
 }
 
+const instancesToSurvive = () => {
+  let arr = [];
+  for (let i = 0; arr.length != 30; i++) {
+    let pAeq = pAequorFactory(i, mockUpStrand);
+    if (pAeq.willLikelySurvive()) {
+      arr.push(pAeq);
+    }
+  }
+  return arr;
+}
 
 
-let pAeq = pAequorFactory(1, mockUpStrand)
-
-console.log(pAeq);
-
-console.log(pAeq.willLikelySurvive());
 
 
 
